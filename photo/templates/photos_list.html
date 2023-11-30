@@ -1,0 +1,28 @@
+<div class="album py-5 bg-light">
+  <div class="container">
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+      {% for record in object_list %}
+      <div class="col">
+        <div class="card shadow-sm">
+
+
+          <div class="card-body">
+            <p class="card-text">{{record.title}}</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <button type="button" class="btn btn-sm btn-outline-secondary"
+                  onclick="location.href='{% url 'photo:photo_detail' record.pk %}'">みる</button>
+                <button type="button" class="btn btn-sm btn-outline-secondary"
+                  onclick="location.href='{% url 'photo:photos_category' category=record.category.id %}'">{{record.category.title}}</button>
+              </div>
+              <a href="{% url 'photo:user_list' user=record.user.id %}"><small
+                  class="text-muted">{{record.user.username}}</small></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
